@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro'
+import groupBy from 'lodash/groupBy'
+import keys from 'lodash/keys'
+import { slugifySpace } from '@utils/format'
+import { parseSlug } from '@utils/file'
+import { useLocale } from '@utils/locale'
+import { formatDateMD } from '@utils/format'
+const { path, t, locale } = useLocale(Astro.url)
+let { tag, category } = Astro.props
+const posts = (await Astro.glob('../content/posts/**/*.{md,mdx}')).map((i) => {
+    i.frontmatter['url'] =  parseSlug(i.file) + '/'
+    return i.frontmatter
+})
+const filteredPosts = posts
+    .filter((frontmatter) => {
+        if (tag) {
+            return !frontmatter.draft && frontmatter.tags && frontmatter.tags.includes(tag)
+        } else if (category) {
+            return !frontmatter.draft && frontmatter.categories && frontmatter.categories.includes(category)
+        }
+        return !frontmatter.draft
+    })
+    .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
+
+const tags = new Set(
+    filteredPosts
+        .filter((i) => i.tags)
+        .map((i) => i.tags)
+        .flat()
+)
+const postsByYear = groupBy(filteredPosts, (frontmatter) => new Date(frontmatter.pubDate).getFullYear())
+const result = keys(postsByYear)
+    .map((key) => ({
+        year: key,
+        list: postsByYear[key].sort((a: any, b: any) => new Date(b.pubDate) - new Date(a.pubDate))
+    }))
+    .filter((i: any) => !isNaN(i.year))
+    .reverse()
+function getTitle(post) {
+    if (!locale || locale === 'zh') return post.title
+    const enTitle = post['title-en']
+    if (!enTitle) return post.title
+    return enTitle
+}
+---
+
+<Layout title={t('nav.posts')}>
+    <main  class="mt-8">
+        {
+            result.map((yearItem) => {
+                return (
+                    <>
+                        <div class="text-2xl font-bold italic my-3">{yearItem.year}</div>
+                        <ul class="px-2">
+                            {yearItem.list.map((post: any) => {
+                                return (
+                                    <li class="my-1 flex  transition-all duration-300">
+                                        <span style={{ flex: '0 0 5rem' }}>
+                                            <time class="mr-2">{formatDateMD(post.pubDate)}</time>
+                                        </span>
+                                        <a rel="prefetch-intent"  href={path(post.url)}  class="panda-link-static">
+                                            {getTitle(post)}
+                                        </a>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </>
+                )
+            })
+        }
+
+        <div class="mt-6">
+            {
+                [...tags].map((tag) => {
+                    return (
+                        <a
+                            class="mr-1 text-sm panda-link my-1 hover:font-bold"
+                            href={'/tags/' + slugifySpace(tag) + '/'}
+                        >
+                            #{t('tags.' + tag)}
+                        </a>
+                    )
+                })
+            }
+        </div>
+    </main>
+</Layout>

@@ -1,0 +1,43 @@
+---
+import '../styles/index.css'
+import Header from './Header.astro'
+import Navbar from './Navbar.astro'
+import Footer from './Footer.astro'
+import { useLocale } from '@utils/locale'
+import {PandaConfig} from "../../astro.config.mjs";
+const { t, locale } = useLocale(Astro.url)
+const {description:defaultDescription,title:defaultTitle} = PandaConfig
+
+export const prerender = true
+
+
+export interface Props {
+    title: string
+    navbar?: boolean
+    description?: string
+}
+
+let { title, navbar,description,transition } = Astro.props
+if (navbar === undefined) navbar = true
+if (!description) description = defaultDescription
+const fullTitle = `${title} - ${defaultTitle}`
+---
+
+<!doctype html>
+<html lang={locale} class="mx-4">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <title>{fullTitle}</title>
+    </head>
+    <body class="max-width dark:bg-stone-700">
+        <Header />
+        { navbar && <Navbar />}
+        <main >
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

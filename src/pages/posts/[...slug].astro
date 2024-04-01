@@ -1,0 +1,35 @@
+---
+import BlogPostLayout from '@layouts/BlogPostLayout.astro'
+import { useLocale} from "@utils/locale";
+export const prerender = true
+
+export async function getStaticPaths() {
+    const all_posts = await Astro.glob('../../content/posts/*.{md,mdx}')
+    const default_posts = all_posts.filter((post) => !post.file.includes('.en.md'))
+    return default_posts.map((post) => {
+        const dirs = post.file.split('/')
+        const fileName = dirs.pop().split('.').shift()
+        // const category = dirs.pop()
+        const enPost = all_posts.find((post) => post.file.includes(`${fileName}.en.md`))
+        return {
+            params: {
+                slug: `${fileName}`
+            },
+            props: {
+                post_zh: post,
+                post_en: enPost
+            }
+        }
+    })
+}
+const { Content, frontmatter } = Astro.props.post_zh
+let LocaleContent = Content
+const {locale} = useLocale(Astro.url)
+if (Astro.props.post_en && locale === 'en') {
+    LocaleContent = Astro.props.post_en.Content
+}
+---
+
+<BlogPostLayout FrontMatter={frontmatter}>
+    <LocaleContent />
+</BlogPostLayout>

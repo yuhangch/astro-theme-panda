@@ -1,0 +1,29 @@
+---
+import BlogListLayout from '@layouts/BlogListLayout.astro'
+export const prerender = true
+
+export async function getStaticPaths() {
+    const posts = await Astro.glob('../../content/posts/**/*.{md,mdx}')
+    const categories = [
+        ...new Set(
+            posts
+                .filter((i) => i.frontmatter.categories)
+                .map((i) => i.frontmatter.categories)
+                .flat()
+        )
+    ]
+    return categories.map((category) => {
+        return {
+            params: {
+                category
+            },
+            props: {
+                category
+            }
+        }
+    })
+}
+const { category } = Astro.props
+---
+
+<BlogListLayout tag="" category={category} />

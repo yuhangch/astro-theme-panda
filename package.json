@@ -1,0 +1,49 @@
+{
+    "name": "astro-theme-panda",
+    "type": "module",
+    "version": "0.1.0",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/mdx": "latest",
+        "@astrojs/partytown": "latest",
+        "@astrojs/rss": "latest",
+        "@astrojs/sitemap": "latest",
+        "@astrojs/ts-plugin": "latest",
+        "@astrojs/vercel": "latest",
+        "@vercel/kv": "latest",
+        "astro": "latest",
+        "astro-expressive-code": "latest",
+        "astro-i18n-aut": "latest",
+        "astro-purgecss": "latest",
+        "astro-seo": "latest",
+        "lodash": "latest",
+        "luxon": "latest",
+        "markdown-it": "latest",
+        "purgecss": "latest",
+        "remark-pangu": "latest"
+    },
+    "devDependencies": {
+        "@expressive-code/core": "latest",
+        "@rollup/plugin-yaml": "latest",
+        "@types/lodash": "latest",
+        "@types/luxon": "latest",
+        "@types/markdown-it": "latest",
+        "@types/node": "^20.11.30",
+        "debug": "latest",
+        "hastscript": "latest",
+        "jsonc-parser": "latest",
+        "prettier": "latest",
+        "prettier-plugin-astro": "latest",
+        "remark-directive": "latest",
+        "shikiji": "latest",
+        "slash": "latest",
+        "unist-util-visit": "latest",
+        "unocss": "latest"
+    }
+}

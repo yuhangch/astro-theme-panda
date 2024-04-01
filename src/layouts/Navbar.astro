@@ -1,0 +1,34 @@
+---
+import {useLocale} from '@utils/locale'
+import {PandaConfig} from "../../astro.config.mts";
+
+const {url} = Astro
+const {path, t, locale} = useLocale(url)
+const {navbar} = PandaConfig
+
+const items = navbar
+function isRootPage() {
+    return !items.some((item) => url.toString().includes(item.url))
+}
+---
+
+<nav class={url.toString().includes('/posts/') ? 'hidden' : ''}>
+    <a
+            rel="prefetch"
+            href={path('/')}
+            class="panda-link mr-4 animated hover:no-underline"
+            class:list={isRootPage() ? 'active' : ''}>{t('nav.posts')}</a
+    >
+    {
+        items.map((item) => {
+            return (
+                    <a
+                            rel="prefetch"
+                            href={item.url}
+                            class="panda-link mr-4 animated hover:no-underline"
+                            class:list={url.toString().includes(item.url) ? 'active' : ''}
+                    >{item.title}</a>
+            )
+        })
+    }
+</nav>

@@ -1,0 +1,24 @@
+nav:
+    posts: posts
+    recent: recent
+footer:
+    home: home
+    rss: rss
+    timeline: timeline
+    collection: collection
+    drafts: drafts
+    contact: contact
+    built-with: Built with
+    inspired-by: Inspired by
+post:
+    back: Back
+    post_at: Posted at
+    last_modified_at: Last modified at
+message:
+    404-content: Page not found
+    back-later: Work not finished yet, please come back later
+    loading: Loading...
+pagination:
+    previous: Previous
+    next: Next
+

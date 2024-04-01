@@ -1,0 +1,19 @@
+---
+import { useLocale } from '@utils/locale'
+const { title, slug, path,posts } = Astro.props
+const { locale } = useLocale(Astro.url)
+
+// const posts = await Astro.glob(path)
+const en = posts.find((p) => p.file.includes(`${slug}.en`))
+const defaultLang = posts.find((p) => p.file.includes(`${slug}.md`))
+import Layout from '@layouts/Layout.astro'
+const { Content } = defaultLang //TODO i18n implementation
+// const { Content } = locale === 'en' ? en : defaultLang
+export const prerender = true
+---
+
+<Layout title={title}>
+    <div class="mt-9">
+        <Content />
+    </div>
+</Layout>

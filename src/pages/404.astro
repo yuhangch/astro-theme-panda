@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { useLocale } from '@utils/locale'
+const { t } = useLocale(Astro.url)
+export const prerender = true
+---
+
+<Layout title={t('message.404-content')}>
+    <h1>404</h1>
+    <p>{t('message.404-content')}</p>
+</Layout>

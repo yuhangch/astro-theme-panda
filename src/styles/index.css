@@ -1,0 +1,176 @@
+body {
+    font-family: Verdana, sans-serif;
+    overflow-y: scroll;
+}
+
+img {
+    @apply max-w-md mx-h-[20%];
+}
+
+time,
+div {
+    color: rgb(var(--color-text-heading));
+}
+
+.panda-link-static {
+    @apply hover:cursor-pointer no-underline
+    hover:underline
+    hover:underline-offset-4;
+    color: rgb(var(--color-text-link));
+}
+
+.panda-link-static:hover {
+    color: rgb(var(--color-text-link-hover));
+    text-decoration-thickness: 0.125rem;
+    text-underline-offset: 5px;
+}
+
+.panda-link {
+    @apply hover:cursor-pointer no-underline animated ;
+    color: rgb(var(--color-text-link));
+}
+
+.panda-link:hover {
+    color: rgb(var(--color-text-link-hover));
+}
+
+a.animated {
+    --animated-underline-from: rgb(var(--color-text-link));
+    --animated-underline-to: rgb(var(--color-text-link));
+    position: relative;
+    box-decoration-break: clone;
+    text-decoration: none;
+}
+
+a.animated:after {
+    left: 0px;
+    right: 0px;
+    bottom: -4px;
+    content: '';
+    height: 2px;
+    width: auto;
+    position: absolute;
+    transform: translateZ(0) scaleX(0);
+    transform-origin: left center;
+    transition: all 0.25s ease-in-out;
+    background-image: linear-gradient(to right, var(--animated-underline-from), var(--animated-underline-to));
+}
+
+a.animated:hover:after {
+    transform: translateZ(0) scale(1);
+}
+
+a.animated.active:after {
+    transform: translateZ(0) scale(1);
+}
+
+.max-width {
+    @apply max-w-[65ch] mx-auto;
+}
+
+.panda-text {
+    @apply no-underline
+    cursor-pointer
+    text-blue-700
+    hover:text-blue-700;
+
+    @apply dark:text-stone-100
+    dark:hover:text-stone-100;
+
+    @apply hover:underline
+    hover:underline-offset-4;
+}
+
+:root {
+    /* blue */
+    /*--color-primary-main: 37 99 235;*/
+    /*--color-secondary-main: 24 79 196;*/
+
+    /*green*/
+    --color-primary-main: 29 116 132;
+    --color-secondary-main: 20 79 90;
+
+    --color-text-body: 55 65 81;
+    --color-text-heading: 55 65 81;
+    --color-text-link: var(--color-primary-main);
+    --color-text-link-hover: var(--color-secondary-main);
+    --color-border: var(--color-primary-main);
+    --color-code-bg : #f3f4f6;
+
+
+    scroll-behavior: smooth;
+}
+
+:root.dark {
+    color-scheme: dark;
+    --color-primary-main: 235 153 161; /* #eb99a1 */
+    --color-secondary-main: 226 111 122; /* #e26f7a */
+    --color-text-body: 214 211 209;
+    --color-text-heading: 255 255 255;
+    --color-text-link: var(--color-primary-main);
+    --color-text-link-hover: var(--color-secondary-main);
+    --color-border: var(--color-primary-main);
+    --color-code-bg : #1a202c;
+
+    scroll-behavior: smooth;
+}
+
+/*
+ * prose link
+ */
+.prose :where(a):not(:where([data-footnote-ref], [data-footnote-backref], .not-prose, .not-prose *)) {
+    @apply underline px-1
+    underline-offset-4;
+    hover: underline;
+}
+
+/*
+ * blockquote
+ */
+.prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
+    @apply bg-gray-100 dark:bg-stone-600
+    text-base m-0
+    border-l-solid
+    font-normal rounded-lg
+    rounded-l-sm
+    pl-4 p-2;
+    border-left: 6px solid rgb(var(--color-primary-main)) !important;
+}
+
+.prose :where(ol > li):not(:where(.not-prose, .not-prose *))::marker,
+.prose :where(ul > li):not(:where(.not-prose, .not-prose *))::marker,
+.prose :where(summary):not(:where(.not-prose, .not-prose *))::marker {
+    color: rgb(var(--color-primary-main));
+    @apply mr-4 font-semibold;
+}
+
+/*
+* footnotes
+*/
+
+[data-footnote-ref]::before {
+    content: ' [';
+}
+
+[data-footnote-ref]::after {
+    content: '] ';
+}
+
+[data-footnote-backref] {
+    text-decoration: none;
+}
+
+[data-footnote-ref] {
+    @apply font-normal no-underline;
+}
+
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s;
+}
+
+.duration-300 {
+    transition-duration: .3s;
+}
+

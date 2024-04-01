@@ -1,0 +1,8 @@
+---
+import { useLocale } from '@utils/locale'
+const { t } = useLocale(Astro.url)
+---
+
+<div class="font-semibold italic">
+    {t('message.back-later')}
+</div>

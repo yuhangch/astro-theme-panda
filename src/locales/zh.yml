@@ -1,0 +1,24 @@
+nav:
+    posts: 随笔
+    recent: 最近
+footer:
+    home: 首页
+    rss: 订阅
+    timeline: 时间线
+    collection: 文集
+    drafts: 草稿本
+    contact: 联络
+    built-with: 基于
+    inspired-by: 灵感来自
+post:
+    back: 返回
+    post_at: 发布于
+    last_modified_at: 最后编辑于
+
+message:
+    404-content: 页面未找到
+    back-later: 数据请求发生些许问题，请稍后再试
+    loading: 加载中...
+pagination:
+    previous: 上一页
+    next: 下一页
