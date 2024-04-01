@@ -1,5 +1,5 @@
 ---
-import MDI18nLayout from '../layouts/MDI18nLayout.astro'
+import MDI18nLayout from '@layouts/MDI18nLayout.astro'
 import { useLocale } from '@utils/locale'
 const { t } = useLocale(Astro.url)
 const posts = await Astro.glob('../content/about/*.md')

@@ -1,7 +1,7 @@
 import zh from '../locales/zh.yml'
 import en from '../locales/en.yml'
 import get from 'lodash/get'
-import { PandaConfig } from '../../astro.config.mjs'
+import { PandaConfig } from '../config.js'
 const { defaultLocale } = PandaConfig
 
 // TODO cofigure the i18n

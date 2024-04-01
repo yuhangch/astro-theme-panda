@@ -4,7 +4,7 @@ import Header from './Header.astro'
 import Navbar from './Navbar.astro'
 import Footer from './Footer.astro'
 import { useLocale } from '@utils/locale'
-import {PandaConfig} from "../../astro.config.mjs";
+import {PandaConfig} from "../config.js";
 const { t, locale } = useLocale(Astro.url)
 const {description:defaultDescription,title:defaultTitle} = PandaConfig
 

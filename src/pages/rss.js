@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import MarkdownIt from 'markdown-it'
-import { PandaConfig } from './astro.config.mts'
+import { PandaConfig } from '../config.js'
 const { site, description, title } = PandaConfig
 
 export const prerender = true

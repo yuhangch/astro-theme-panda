@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { PandaConfig } from '../../astro.config.mjs'
+import { PandaConfig } from '../config.js'
 const { defaultLocale } = PandaConfig
 
 export function relativeTo(dateStr: string, locale = 'zh') {

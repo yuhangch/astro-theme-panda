@@ -18,10 +18,11 @@ Inside of panda🐼 project, you'll focus on these folders and files:
 ├── src/
 │   └── content/
 │       └── posts/
-└── astro.config.mts
+│   └── config.js
+└── astro.config.mjs
 ```
 
-In `astro.config.mts`, navigate to `PandaConfig`, you can customize your site for your own needs.
+In `config.js`, navigate to `PandaConfig`, you can customize your site for your own needs.
 
 ```javascript
 export const PandaConfig = {
@@ -77,7 +78,7 @@ categories: ['tech']
 
 ### Simple language support
 
-- Set defaultLocale in `astro.config.mts (PandaConfig)` to the language you want to use.
+- Set defaultLocale in `astro.config.mjs (PandaConfig)` to the language you want to use.
 - If you need lang not `zh` or `en`, you need to add the language file in `src/content/lang/` folder.
 - Reference the `src/locates/en.yml` and `src/utils/locale.ts` for more details.
 
