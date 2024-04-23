@@ -76,7 +76,7 @@ Paragraphs can be multiline too when they constitute words that make up more tha
 
 ## Code Blocks
 
-Syntax highlighting is done using [Prism.js](https://github.com/PrismJS/prism). You can customise to whichever theme you want from the [plenty available prism themes](https://github.com/PrismJS/prism-themes).
+Syntax highlighting is done using [expressive code](https://expressive-code.com/).
 
 ```html title="index.html"
 <!DOCTYPE html>
